@@ -1,0 +1,46 @@
+.home_bg_container {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  background-image: url('../../../public/imgs/compressed_bg.jpg');
+  background-origin: border-box;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode: multiply;
+  padding-top: 10vh;
+}
+
+.hide_text {
+  display: none;
+}
+
+.icon_size {
+  svg {
+    font-size: 8rem;
+    color: rgba(0, 0, 0, 0.5)
+  }
+  .custom_bg{
+    background: linear-gradient(to bottom right, rgb(0, 185, 130), rgb(0, 150, 200), #d24adf);
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .hide_text {
+    width: 350px;
+    font-size: 1rem;
+    display: block;
+  }
+
+  .hide_text_small {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .hide_text {
+    width: auto;
+    font-size: 1.5rem;
+  }
+}

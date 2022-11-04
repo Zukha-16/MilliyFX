@@ -1,0 +1,33 @@
+.links_2 {
+  a {
+    transition: all .2s ease-in-out;
+  }
+
+  a:hover {
+    color: rgb(140, 90, 175);
+
+  }
+
+  a.active {
+    color: rgb(0, 185, 130);
+  }
+}
+
+.large_screen {
+  display: none;
+}
+
+@media only screen and (min-width: 1024px) {
+  .large_screen {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  .large_screen {
+    img {
+      width: 55px;
+      height: 55px;
+    }
+  }
+}
