@@ -26,7 +26,7 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
         onClick={() => {
           setMenuPosition(!menuPosition);
         }}
-        className='relative w-[30px] h-[25px] flex flex-col justify-between items-end z-50 burger_menu_icon'
+        className='relative w-[30px] h-[25px] flex flex-col justify-between items-end z-[999] burger_menu_icon'
       >
         <span className={`menu_stick_1 ${menuPosition ? "open" : ""} `}></span>
         <span className={`menu_stick_2 ${menuPosition ? "open" : ""} `}></span>
