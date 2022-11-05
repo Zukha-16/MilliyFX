@@ -1,9 +1,8 @@
 import Container from "../container/Container";
 import { BsSearch } from "react-icons/bs";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 
-import Analysis from "./Analysis";
 import NewsContent from "./NewsContent";
 import "./NewsAndAnalysis.scss";
 import Comments from "./Comments";
