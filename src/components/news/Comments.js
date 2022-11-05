@@ -1,4 +1,3 @@
-import Loader from "../loader/Loader";
 import { useRef } from "react";
 
 function Comments({ data }) {
