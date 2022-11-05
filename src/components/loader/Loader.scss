@@ -1,0 +1,29 @@
+@keyframes loader {
+  0% {
+    transform: translateY(0%) rotateY(0deg);
+  }
+
+  25% {
+    transform: translateY(-30%) rotateY(180deg);
+  }
+
+  50% {
+    transform: translateY(0%) rotateY(0deg);
+  }
+
+  75% {
+    transform: translateY(-30%) rotateY(180deg);
+  }
+
+  100% {
+    transform: translateY(0%) rotateY(0deg);
+  }
+}
+
+.loader_effect {
+  animation-name: loader;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+
+}
+

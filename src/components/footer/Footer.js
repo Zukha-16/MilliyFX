@@ -46,6 +46,7 @@ const Footer = () => {
                 {list.map((item) => {
                   return (
                     <Link
+                      key={item.name}
                       to={item.link}
                       className="hover:text-primaryPurple hover:cursor-pointer transition-all duration-300 ease-in-out"
                     >
