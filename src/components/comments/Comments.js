@@ -1,7 +1,17 @@
+import axios from "axios";
 import { useRef } from "react";
+
 
 function Comments({ data }) {
   const textArea = useRef();
+  const postComment = async() => {
+    await axios.post(`http://localhost:3001/news/${data.id}`, {
+        "id": 17,
+        "user": "Ziyo",
+        "date": "22/02/2022",
+        "comment": "Great news!"
+    })
+  }
 
   return (
     <div className="bg-secondaryBg h-full rounded py-2 px-4">
@@ -33,7 +43,7 @@ function Comments({ data }) {
             className="w-full min-h-[6rem] bg-transparent border-2 border-[rgb(9,9,9)] rounded p-1 outline-none focus:border-primaryBlue transition-all duration-200 ease-in-out mb-4"
             placeholder="Enter your comment here..."
           />
-          <button className="border-2 py-1 px-4 rounded  border-[rgb(9,9,9)] hover:border-primaryBlue transition-all duration-200 ease-in-out hover:text-white hover:bg-primaryBlue hover:scale-110">
+          <button className="border-2 py-1 px-4 rounded  border-[rgb(9,9,9)] hover:border-primaryBlue transition-all duration-200 ease-in-out hover:text-white hover:bg-primaryBlue hover:scale-110" onClick={() => {postComment()}}>
             Submit
           </button>
         </div>

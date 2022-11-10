@@ -1,14 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Loader from "../loader/Loader";
-import "./NewsAndAnalysis.scss";
+import "../news/NewsAndAnalysis.scss";
+import { useDispatch } from "react-redux";
+import { fetchNews } from "./newsSlice";
 
 function NewsContent({ getId }) {
   const [news, setNews] = useState(null);
   const [error, setError] = useState(null);
   const [loader, setLoader] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(fetchNews());
     const getNews = async () => {
       setLoader(true);
       try {
@@ -23,6 +27,7 @@ function NewsContent({ getId }) {
     };
     getNews();
   }, []);
+
   return (
     <>
       {loader ? <Loader /> : null} {error ? <h1>{error}</h1> : null}
@@ -45,7 +50,7 @@ function NewsContent({ getId }) {
                   </h2>
                   <p className="">{item.content}</p>
                 </div>
-                <div className="flex justify-between items-center text-base">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center text-base">
                   <h4>
                     Posted by{" "}
                     <span className="text-primaryGreen">{item.fromUser}</span>

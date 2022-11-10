@@ -2,19 +2,25 @@ import Container from "../container/Container";
 import { BsSearch } from "react-icons/bs";
 import { useRef, useState } from "react";
 import axios from "axios";
-
-import NewsContent from "./NewsContent";
+import { useNavigate } from "react-router-dom";
+import NewsContent from "../newsList/NewsList";
 import "./NewsAndAnalysis.scss";
-import Comments from "./Comments";
+import Comments from "../comments/Comments";
 
 const News = () => {
   const [title, setTitle] = useState("News");
   const [comments, setComments] = useState(null);
-
+  const navigate = useNavigate();
+  
   const getId = async (id) => {
     await axios.get(`http://localhost:3001/news/${id}`).then((data) => {
       setComments(data.data);
     });
+    if (window.innerWidth < 768) {
+      navigate("comments");
+    } else {
+      return;
+    }
   };
 
   const searchInput = useRef();
