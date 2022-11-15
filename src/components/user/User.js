@@ -1,10 +1,10 @@
 import Container from "../container/Container";
 import Profile from "./profile/Profile";
-import Courses from "./courses/Courses";
+// import Courses from "./courses/Courses";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 function User() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     window.scrollTo(0, 0);

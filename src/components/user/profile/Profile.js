@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 // loader and default image
 import Loader from "../../loader/Loader";
@@ -17,7 +17,7 @@ function Profile() {
   const [changeProfile, setChangeProfile] = useState(false);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [imageLable, setImageLabel] = useState("Click to update your image");
+  // const [imageLable, setImageLabel] = useState("Click to update your image");
 
   const { user: localUser, userLoadingStatus } = useSelector(
     (state) => state.user
@@ -89,7 +89,7 @@ function Profile() {
                 uploadImageHandler(e);
               }}
             />
-            {imageLable}
+            {'imageLable'}
           </label>
 
           <input

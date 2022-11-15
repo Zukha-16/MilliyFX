@@ -36,6 +36,7 @@ const App = () => {
         dispatch(userLogOut());
       }
     });
+    // eslint-disable-next-line
   }, []);
   return (
     <Router>
