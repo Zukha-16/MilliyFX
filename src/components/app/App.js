@@ -19,9 +19,10 @@ import User from "../user/User";
 import Login from "../user/login/Login";
 import Register from "../user/register/Register";
 import Reset from "../user/reset/Reset";
-import Error from "../notFoundPage/Error";
 import AboutUs from "../aboutUs/AboutUs";
 import Education from "../education/Education";
+import FindUs from "../../support/FindUs";
+import Error from "../notFoundPage/Error";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,12 +46,16 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/comments" element={<Comments />} />
+        
         <Route path="/user" element={<User />} />
         <Route path="/user/login" element={<Login />} />
         <Route path="/user/register" element={<Register />} />
         <Route path="/user/reset" element={<Reset />} />
+
         <Route path="/about" element={<AboutUs />} />
         <Route path="/education" element={<Education />} />
+        <Route path="/findus" element={<FindUs />} />
+
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

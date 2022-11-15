@@ -9,7 +9,7 @@ import poster from "../../assets/poster.png";
 
 function Education() {
   return (
-    <div className="mt-[7rem] lg:mt-[8rem] text-white p_spacer">
+    <div className="mt-[7rem] lg:mt-[8rem] text-white">
       <Container>
         <h1 className="text-center text-3xl lg:text-4xl text-white mb-2">
           Our courses

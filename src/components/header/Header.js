@@ -92,5 +92,5 @@ const list = [
   { name: "News", link: "/news" },
   { name: "About us", link: "/about" },
   { name: "Education", link: "/education" },
-  { name: "Support", link: "/support" },
+  { name: "Find us", link: "/findus" },
 ];
