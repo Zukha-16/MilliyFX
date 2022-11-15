@@ -1,20 +1,20 @@
-import logo from "../../assets/logo_no_label.png";
-import BurgerMenu from "./burgerMenu/BurgerMenu";
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import me from "../../assets/me.jpg";
+import { NavLink, useNavigate } from "react-router-dom";
+import BurgerMenu from "./burgerMenu/BurgerMenu";
+// redux
+import { useSelector } from "react-redux";
+// media and styles
 import "./Header.scss";
-const Header = () => {
-  const list = [
-    { name: "Home", link: "/" },
-    { name: "News", link: "/news" },
-    { name: "About us", link: "/about" },
-    { name: "Education", link: "/education" },
-    { name: "Support", link: "/support" },
-  ];
-  const [menuPosition, setMenuPosition] = useState(false);
+import logo from "../../assets/logo_no_label.png";
+import defualtImage from "../../assets/add_image.png";
 
+const Header = () => {
+  const [menuPosition, setMenuPosition] = useState(false);
   const [header, setHeader] = useState(false);
+  const navigate = useNavigate();
+
+  const { user } = useSelector((state) => state.user);
+
   const listenScrollEvent = () => {
     if (window.scrollY < 73) {
       return setHeader(false);
@@ -22,6 +22,7 @@ const Header = () => {
       return setHeader(true);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", listenScrollEvent);
 
@@ -39,9 +40,9 @@ const Header = () => {
           width={75}
           height={100}
           onClick={() => {
-            console.log("asd");
+            navigate("/");
           }}
-          className='hover:animate-pulse hover:cursor-pointer'
+          className="hover:animate-pulse hover:cursor-pointer"
         />
         <BurgerMenu
           menuPosition={menuPosition}
@@ -57,15 +58,27 @@ const Header = () => {
               </li>
             );
           })}
-          <li>
-            <img
-              src={me}
-              alt="User"
-              width={45}
-              height={45}
-              className="rounded-full border-2 border-primaryPurple transition-all duration-300 ease-in-out hover:border-primaryGreen hover:cursor-pointer"
-            />
-          </li>
+
+          {user.image ? (
+            <li>
+              <img
+                src={!user.image === "default" ? user.image : defualtImage}
+                alt="User"
+                width={45}
+                height={45}
+                className="rounded-full border-2 border-primaryPurple transition-all duration-300 ease-in-out hover:border-primaryGreen hover:cursor-pointer"
+                onClick={() => {
+                  navigate("/user");
+                }}
+              />
+            </li>
+          ) : (
+            <li className="links_2">
+              <NavLink end to="/user/login">
+                Login / Register
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
     </div>
@@ -73,3 +86,11 @@ const Header = () => {
 };
 
 export default Header;
+
+const list = [
+  { name: "Home", link: "/" },
+  { name: "News", link: "/news" },
+  { name: "About us", link: "/about" },
+  { name: "Education", link: "/education" },
+  { name: "Support", link: "/support" },
+];

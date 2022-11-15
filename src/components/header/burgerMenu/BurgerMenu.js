@@ -1,15 +1,15 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect } from "react";
+// redux
+import { useDispatch } from "react-redux";
+import { userLogOut } from "../../user/userSlice";
+import { useSelector } from "react-redux";
+// styles
 import "./BurgerMenu.scss";
-import me from "../../../assets/me.jpg";
+
 const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
-  const list = [
-    { name: "Home", link: "/" },
-    { name: "News", link: "/news" },
-    { name: "About us", link: "/about" },
-    { name: "Education", link: "/education" },
-    { name: "Support", link: "/support" },
-  ];
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.user);
 
   useEffect(() => {
     if (menuPosition) {
@@ -17,7 +17,7 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
     } else {
       document.body.classList.remove("stop_scroll");
     }
-  }, [menuPosition]);
+  }, [menuPosition, user]);
 
   return (
     <div className="burger_menu_container">
@@ -26,7 +26,7 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
         onClick={() => {
           setMenuPosition(!menuPosition);
         }}
-        className='relative w-[30px] h-[25px] flex flex-col justify-between items-end z-[999] burger_menu_icon'
+        className="relative w-[30px] h-[25px] flex flex-col justify-between items-end z-[999] burger_menu_icon"
       >
         <span className={`menu_stick_1 ${menuPosition ? "open" : ""} `}></span>
         <span className={`menu_stick_2 ${menuPosition ? "open" : ""} `}></span>
@@ -38,21 +38,18 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
           menuPosition ? "nav_open" : "nav_close"
         }`}
       >
-        <li className="h-[30%] w-full flex flex-col justify-around items-center border-y-2 border-primaryPurple vertical_hider">
-          <Link to="/">
-            <img
-              src={me}
-              alt="User"
-              width={200}
-              height={200}
-              className="border-8 border-primaryPurple rounded-full hover:border-2 transition-all duration-300 ease-in-out cursor-pointer"
-            />
-          </Link>
-          <Link to="/" className="hover:cursor-pointer">
-            <h3>Zukhriddin Mekhrullaev</h3>
-          </Link>
-        </li>
         <div className="h-[40%] w-full flex flex-col justify-start items-center vertical_fixer">
+          <li className="links" style={{ animationDelay: "0.3s" }}>
+            <NavLink
+              end
+              to={user.name ? "/user" : "/user/login"}
+              style={{ animationDelay: `0.3s` }}
+              onClick={() => setMenuPosition(false)}
+            >
+              {user.name ? user.name : "Login / Register"}
+            </NavLink>
+          </li>
+
           {list.map((item, index) => {
             return (
               <li
@@ -70,6 +67,19 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
               </li>
             );
           })}
+          {user.name ? (
+            <li className="links" style={{ animationDelay: "0.9s" }}>
+              <Link
+                to={"/"}
+                onClick={() => {
+                  dispatch(userLogOut());
+                  setMenuPosition(false);
+                }}
+              >
+                Logout
+              </Link>
+            </li>
+          ) : null}
         </div>
         <div className="fixed w-full text-center text-base left-0 bottom-[5px] copyright ">
           <p>
@@ -82,3 +92,11 @@ const BurgerMenu = ({ menuPosition, setMenuPosition }) => {
 };
 
 export default BurgerMenu;
+
+const list = [
+  { name: "Home", link: "/" },
+  { name: "News", link: "/news" },
+  { name: "About us", link: "/about" },
+  { name: "Education", link: "/education" },
+  { name: "Support", link: "/support" },
+];

@@ -1,6 +1,6 @@
 import Container from "../container/Container";
 import { BsSearch } from "react-icons/bs";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NewsContent from "../newsList/NewsList";
@@ -11,7 +11,7 @@ const News = () => {
   const [title, setTitle] = useState("News");
   const [comments, setComments] = useState(null);
   const navigate = useNavigate();
-  
+
   const getId = async (id) => {
     await axios.get(`http://localhost:3001/news/${id}`).then((data) => {
       setComments(data.data);
@@ -28,6 +28,9 @@ const News = () => {
     console.log(searchInput.current.value);
     searchInput.current.value = "";
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container>

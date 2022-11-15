@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import news from "../components/newsList/newsSlice";
+import user from "../components/user/userSlice";
 
 const stringMiddleware = () => (next) => (action) => {
   if (typeof action === "string") {
@@ -11,7 +11,7 @@ const stringMiddleware = () => (next) => (action) => {
 };
 
 const store = configureStore({
-  reducer: { news },
+  reducer: { user },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(stringMiddleware),
   devTools: process.env.NODE_ENV !== "production",

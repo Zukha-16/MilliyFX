@@ -5,8 +5,17 @@
 
 * {
     font-family: 'Rubik', sans-serif;
+    outline: none;
 }
 
 body {
     background-color: rgb(5, 5, 5);
+}
+
+@media only screen and (min-width: 1280px) {
+    * {
+        p {
+            letter-spacing: .8px;
+        }
+    }
 }

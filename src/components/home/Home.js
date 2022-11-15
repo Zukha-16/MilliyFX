@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { HiUserAdd } from "react-icons/hi";
 import { MdPlayLesson, MdCastForEducation } from "react-icons/md";
 import { FaMoneyBillWave } from "react-icons/fa";
@@ -8,6 +10,9 @@ import logoWithLabel from "../../assets/logo_with_label.png";
 import coFounder from "../../assets/co-founder.jpg";
 
 const Home = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div
