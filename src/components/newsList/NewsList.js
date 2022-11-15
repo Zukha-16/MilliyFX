@@ -26,6 +26,7 @@ function NewsContent({ getId }) {
       }
     };
     getNews();
+    // eslint-disable-next-line
   }, []);
 
   return (
