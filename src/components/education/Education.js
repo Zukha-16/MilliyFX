@@ -1,3 +1,5 @@
+import { useNavigate, useNvigate } from "react-router-dom";
+import { useEffect } from "react";
 import Container from "../container/Container";
 import basic from "../../assets/basic.jpg";
 import premium from "../../assets/premium.jpg";
@@ -6,8 +8,15 @@ import pro from "../../assets/pro.jpg";
 import student_interview from "../../assets/student_interview.mp4";
 import student_case from "../../assets/student_case.mp4";
 import poster from "../../assets/poster.png";
+import { useSelector } from "react-redux";
 
 function Education() {
+  const navigate = useNavigate();
+  const { featuredCourse, courses } = useSelector((state) => state.courses);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="mt-[7rem] lg:mt-[8rem] text-white">
       <Container>
@@ -19,7 +28,7 @@ function Education() {
           a wide range of opportunities, options and perspectives.
         </h2>
 
-        <div className="relative flex flex-col lg:flex-row gap-4">
+        <div className="relative flex flex-col lg:flex-row gap-8 lg:gap-6">
           <div className="w-full lg:w-[65%] order-2 lg:order-1">
             {courses.map((course) => {
               return (
@@ -52,18 +61,24 @@ function Education() {
                       course.position === "right" ? "lg:order-1" : "lg:order-2"
                     }`}
                   >
-                    <div className="">
+                    <div>
                       <h3 className="hidden lg:block text-2xl text-primaryPurple mb-3">
                         {course.name}
                       </h3>
                       <p className=" w-full">
                         <span className="fx_effect">
-                          {course.highlihgtWord}
+                          {course.highlightWord}
                         </span>{" "}
                         {course.content}
                       </p>
                     </div>
-                    <button className="w-full max-w-[350px] mx-auto lg:mx-0 lg:max-w-[250px] border-2 rounded py-2 border-primaryGreen text-primaryGreen hover:bg-primaryGreen transition-all duration-300 ease-in-out hover:text-white mt-6 text-xl">
+                    <button
+                      className="w-full max-w-[350px] mx-auto lg:mx-0 lg:max-w-[250px] border-2 rounded py-2 border-primaryGreen text-primaryGreen hover:bg-primaryGreen transition-all duration-300 ease-in-out hover:text-white mt-6 text-xl"
+                      type="button"
+                      onClick={() => {
+                        navigate(`/education/${course.id}`);
+                      }}
+                    >
                       Start learning
                     </button>
                   </div>
@@ -74,7 +89,7 @@ function Education() {
 
           <div className="lg:w-[35%] lg:sticky lg:top-[5.5rem] md:right-0 h-full bg-secondaryBg rounded py-8 px-4 text-center order-1 lg:order-2 border border-secondary">
             <h3 className="text-2xl text-primaryPurple text-left">
-              Basic course - COMPLETLY FREE
+              {featuredCourse.name} - COMPLETLY FREE
             </h3>
             <img
               src={basic}
@@ -82,26 +97,29 @@ function Education() {
               className="rounded border border-secondary w-[350px] mx-auto my-8"
             />
             <p className="text-left">
-              <span className="fx_effect">BASIC</span> - master the basic
-              knowledge and skills of stock trading offline, with additional
-              online resources: video courses, a library and webinars twice a
-              week.
+              <span className="fx_effect">{featuredCourse.highlightWord}</span>{" "}
+              {featuredCourse.content}
             </p>
-            <button className="w-full max-w-[350px] border-2 rounded py-2 border-primaryGreen text-primaryGreen hover:bg-primaryGreen transition-all duration-300 ease-in-out hover:text-white mt-6 text-xl">
-              Start learning
+            <button
+              className="w-full max-w-[350px] border-2 rounded py-2 border-primaryGreen text-primaryGreen hover:bg-primaryGreen transition-all duration-300 ease-in-out hover:text-white mt-6 text-xl"
+              type="button"
+              onClick={() => {
+                navigate("/user");
+              }}
+            >
+              Start learning now
             </button>
           </div>
         </div>
-        <div className="my-12 ">
+        <div className="my-16 lg:my-20">
           <h2 className="text-center text-3xl lg:text-4xl text-primaryPurple">
             Student interviews
           </h2>
-          <div className="bg-secondaryBg py-6 px-4 rounded mt-8 flex flex-col gap-4 lg:flex-row lg:items-start xl:justify-around">
+          <div className="bg-secondaryBg border border-secondary py-6 px-4 rounded mt-8 flex flex-col gap-4 lg:flex-row lg:items-start xl:justify-around">
             <video
               poster={poster}
               placeholder="Olga's interview"
               controls
-              oncontextmenu="return false"
               preload="auto"
               className="lg:w-[40%] lg:max-w-[350px] rounded my-auto h-[350px]"
             >
@@ -129,12 +147,11 @@ function Education() {
               </p>
             </div>
           </div>
-          <div className="bg-secondaryBg py-6 px-4 rounded mt-8 flex flex-col gap-4 lg:flex-row lg:items-start xl:justify-around">
+          <div className="bg-secondaryBg border border-secondary py-6 px-4 rounded mt-8 flex flex-col gap-4 lg:flex-row lg:items-start xl:justify-around">
             <video
               poster={poster}
               placeholder="Anvar's interview"
               controls
-              oncontextmenu="return false"
               preload="auto"
               className="lg:w-[40%] lg:max-w-[350px] rounded lg:order-2 my-auto h-[350px]"
             >
@@ -163,33 +180,3 @@ function Education() {
 }
 
 export default Education;
-
-const courses = [
-  {
-    id: 1,
-    name: "Premium course",
-    image: "premium",
-    highlihgtWord: "PREMIUM",
-    content:
-      " - guarantees a premium approach to each student, where the basic knowledge will be supplemented by the study of effective trading strategies, under the strict guidance of our experienced mentors. The package includes the basic theory and a 2-month intensive course.",
-    position: "left",
-  },
-  {
-    id: 2,
-    name: "Premium pro course",
-    image: "premium_pro",
-    highlihgtWord: "PREMIUM PRO",
-    content:
-      " is a course focused on individual training with a mentor who is a high-class active trader. One of the powerful bonuses for those who buy this package will be access to 3 completely new trading theories, including a new scalping method.",
-    position: "right",
-  },
-  {
-    id: 3,
-    name: "Pro course",
-    image: "pro",
-    highlihgtWord: "PRO",
-    content:
-      " - a training course from the founder of Milliy Fx - Rahmonjon Shadiev, which includes the study of effective strategies developed by the fund under his management. The main advantage of this package is that it includes a comprehensive program based on all 4 main training packages.",
-    position: "left",
-  },
-];

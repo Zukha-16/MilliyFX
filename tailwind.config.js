@@ -5,11 +5,11 @@ module.exports = {
     extend: {
       colors: {
         primaryGreen: "rgb(0, 185, 130)",
-        primaryBlue: "rgb(0, 150, 200)",
+        primaryBlue: "rgb(0, 91, 225)",
         primaryPurple: "#d24adf",
         secondary: "rgba(255, 255, 255, 0.5)",
         secondaryWhite: "rgba(255, 255, 255, 0.8)",
-        secondaryBg: "rgb(22, 22, 22)",
+        secondaryBg: "rgb(30, 30, 30)",
         instagramHover: "#d24adf",
         telegramHover: "#229ED9",
         whatsappHover: "#25D366",

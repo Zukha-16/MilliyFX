@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 import Container from "../container/Container";
@@ -9,6 +10,7 @@ import promo from "../../assets/promo.mp4";
 import "./AboutUs.scss";
 
 function AboutUs() {
+  const navigate = useNavigate();
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -126,7 +128,7 @@ function AboutUs() {
       <Container>
         <div className="flex flex-col gap-4 items-center justify-center lg:flex-row lg:items-center lg:justify-center lg:gap-12 xl:gap-20">
           <h2 className="text-3xl text-primaryPurple">Speak to our team now</h2>
-          <button className="w-full max-w-[350px] border-2 rounded py-2 border-primaryPurple text-primaryPurple hover:bg-primaryPurple transition-all duration-300 ease-in-out hover:text-white mt-4 lg:mt-0 text-xl">
+          <button className="w-full max-w-[350px] border-2 rounded py-2 border-primaryPurple text-primaryPurple hover:bg-primaryPurple transition-all duration-300 ease-in-out hover:text-white mt-4 lg:mt-0 text-xl" type="button" onClick={() => {navigate('/contactus')}}>
             Speak
           </button>
         </div>

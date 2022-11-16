@@ -74,23 +74,26 @@ function Profile() {
         <Loader />
       ) : changeProfile ? (
         <form className="mt-8 text-lg">
-          <label
-            className={
-              "w-full rounded-none mb-2 text-lg bg-transparent border-secondary p-1 outline-none focus:border-primaryBlue transition-all duration-300 ease-in-out border-2 block text-center hover:cursor-pointer hover:bg-secondary hover:text-black hover:rounded"
-            }
-          >
-            <input
-              type="file"
-              className="custom_input_field"
-              accept="image/png, image/jpeg, image/jpg"
-              multiple={false}
-              hidden
-              onInputCapture={(e) => {
-                uploadImageHandler(e);
-              }}
-            />
-            {'imageLable'}
+          <label class="block mb-2 text-sm text-secondary " htmlFo="file_input">
+            Upload your image
           </label>
+          <input
+            class="block w-full text-sm text-white bg-transparent rounded-md border-2 border-secondary cursor-pointer focus:outline-none"
+            id="file_input"
+            type="file"
+          />
+
+          <label
+            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            for="file_input"
+          >
+            Upload file
+          </label>
+          <input
+            class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+            id="file_input"
+            type="file"
+          />
 
           <input
             className={inputStyle}

@@ -1,0 +1,20 @@
+.find_us_bg {
+    width: 100vw;
+    height: 65vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    background-image: url('../../assets/find_us_bg.jpeg');
+    background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding-top: 7rem;
+}
+
+
+@media only screen and (min-width: 1536px) {
+    .find_us_bg {
+        height: 55vh;
+    }
+}
+

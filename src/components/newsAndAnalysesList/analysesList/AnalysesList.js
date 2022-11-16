@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Loader from "../loader/Loader";
 import "../news/NewsAndAnalysis.scss";
 import { useDispatch } from "react-redux";
-import { fetchNews } from "./newsSlice";
+import { fetchNews } from "./analysesSlice";
 
 function NewsContent({ getId }) {
   const [news, setNews] = useState(null);

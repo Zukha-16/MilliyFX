@@ -99,4 +99,5 @@ const list = [
   { name: "About us", link: "/about" },
   { name: "Education", link: "/education" },
   { name: "Find us", link: "/findus" },
+  { name: "Contact us", link: "/contactus" },
 ];

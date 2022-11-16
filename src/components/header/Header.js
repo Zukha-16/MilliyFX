@@ -11,6 +11,7 @@ import defualtImage from "../../assets/add_image.png";
 const Header = () => {
   const [menuPosition, setMenuPosition] = useState(false);
   const [header, setHeader] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const navigate = useNavigate();
 
   const { user } = useSelector((state) => state.user);
@@ -52,12 +53,57 @@ const Header = () => {
           {list.map((item) => {
             return (
               <li className="links_2" key={item.name}>
-                <NavLink end to={item.link}>
+                <NavLink
+                  end
+                  to={item.link}
+                  onClick={() => {
+                    setDropdown(false);
+                  }}
+                >
                   {item.name}
                 </NavLink>
               </li>
             );
           })}
+          <li className="relative links_2">
+            <button
+              className={`dropdown_btn ${dropdown ? "active" : null}`}
+              onClick={() => {
+                setDropdown(!dropdown);
+              }}
+            >
+              Contact us{" "}
+              <span className="font-thin text-sm align-middle">v</span>
+            </button>
+
+            <div
+              className={`bg-secondaryBg bg-opacity-95 border border-secondary rounded py-2 px-4 w-[8rem] text-left  absolute mt-3 dropdown_menu transition-all duration-300 ease-in-out ${
+                dropdown ? "active" : null
+              }`}
+            >
+              <NavLink
+                end
+                to="/contactus"
+                className="block text-lg"
+                onClick={() => {
+                  setDropdown(!dropdown);
+                }}
+              >
+                Contact us
+              </NavLink>
+              <p className="dropdown_divider"></p>
+              <NavLink
+                end
+                to="/findus"
+                className="block text-lg"
+                onClick={() => {
+                  setDropdown(!dropdown);
+                }}
+              >
+                Find us
+              </NavLink>
+            </div>
+          </li>
 
           {user.image ? (
             <li>
@@ -92,5 +138,4 @@ const list = [
   { name: "News", link: "/news" },
   { name: "About us", link: "/about" },
   { name: "Education", link: "/education" },
-  { name: "Find us", link: "/findus" },
 ];
