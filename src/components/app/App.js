@@ -13,9 +13,7 @@ import { auth } from "../../firebase";
 import { fetchUser } from "../../firebase";
 import Header from "../header/Header";
 import Home from "../home/Home";
-import News from "../news/NewsAndAnalysis";
 import Footer from "../footer/Footer";
-import Comments from "../comments/Comments";
 import User from "../user/User";
 import Login from "../user/login/Login";
 import Register from "../user/register/Register";
@@ -25,6 +23,7 @@ import Education from "../education/Education";
 import FindUs from "../findUs/FindUs";
 import ContactUs from "../contactUs/ContactUs";
 import SingleCourse from "../education/singleCourse/SingleCourse";
+import NewsAndAnalyses from "../newsAndAnalyses/NewsAndAnalyses";
 import Error from "../notFoundPage/Error";
 
 const App = () => {
@@ -47,8 +46,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/news" element={<News />} />
-        <Route path="/news/comments" element={<Comments />} />
+        <Route path="/newsandanalyses" element={<NewsAndAnalyses />} />
 
         <Route path="/user" element={<User />} />
         <Route path="/user/login" element={<Login />} />

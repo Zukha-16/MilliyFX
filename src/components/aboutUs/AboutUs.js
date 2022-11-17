@@ -70,7 +70,6 @@ function AboutUs() {
                 views on our YouTube market analysis videos and have travelled
                 across the world to teach our renowned course.
               </p>
-
               <p>
                 We have since created our Limitless Trader Program which
                 provides the education as well as the tools for traders looking
@@ -79,12 +78,10 @@ function AboutUs() {
             </div>
 
             <video
-              autoplay="autoplay"
+              autoPlay="autoplay"
               loop="loop"
               muted
-              defaultMuted
-              playsinline
-              oncontextmenu="return false;"
+              playsInline
               preload="auto"
               id="myVideo"
               className="hidden lg:inline-block lg:w-[50%] rounded"
@@ -128,7 +125,13 @@ function AboutUs() {
       <Container>
         <div className="flex flex-col gap-4 items-center justify-center lg:flex-row lg:items-center lg:justify-center lg:gap-12 xl:gap-20">
           <h2 className="text-3xl text-primaryPurple">Speak to our team now</h2>
-          <button className="w-full max-w-[350px] border-2 rounded py-2 border-primaryPurple text-primaryPurple hover:bg-primaryPurple transition-all duration-300 ease-in-out hover:text-white mt-4 lg:mt-0 text-xl" type="button" onClick={() => {navigate('/contactus')}}>
+          <button
+            className="w-full max-w-[350px] border-2 rounded py-2 border-primaryPurple text-primaryPurple hover:bg-primaryPurple transition-all duration-300 ease-in-out hover:text-white mt-4 lg:mt-0 text-xl"
+            type="button"
+            onClick={() => {
+              navigate("/contactus");
+            }}
+          >
             Speak
           </button>
         </div>

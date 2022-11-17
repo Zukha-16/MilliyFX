@@ -16,6 +16,8 @@ import {
   addDoc,
   doc,
   setDoc,
+  updateDoc,
+  getDoc,
 } from "firebase/firestore";
 // import { getStorage, ref, getDownloadURL, uploadBytes } from "firebase/storage";
 
@@ -35,9 +37,6 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 // Google auth
-
-
-
 
 // Sign in with email and password
 
@@ -81,6 +80,30 @@ const sendPasswordReset = async (email) => {
 
 const logout = () => {
   signOut(auth);
+};
+
+const fetchDataFromFirestore = async (name) => {
+  const querySnapshot = await getDocs(collection(db, name));
+  let news = [];
+  querySnapshot.forEach((doc) => {
+    news.push(doc.data());
+  });
+  return news;
+};
+
+const fetchComments = async (id) => {
+  const q = query(collection(db, "comments"), where("parent", "==", id));
+  const document = await getDocs(q);
+  let response = [];
+  document.docs.forEach((item) => {
+    response.push(item.data());
+  });
+  return response;
+};
+
+const postComment = async (data, id) => {
+  await setDoc(doc(db, "comments", id), data);
+  // console.log(data)
 };
 
 const changeProfileInfo = async (user, data) => {
@@ -130,4 +153,7 @@ export {
   logout,
   changeProfileInfo,
   fetchUser,
+  fetchDataFromFirestore,
+  fetchComments,
+  postComment,
 };

@@ -135,7 +135,7 @@ export default Header;
 
 const list = [
   { name: "Home", link: "/" },
-  { name: "News", link: "/news" },
+  { name: "News", link: "/newsandanalyses" },
   { name: "About us", link: "/about" },
   { name: "Education", link: "/education" },
 ];

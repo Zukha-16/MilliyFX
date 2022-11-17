@@ -95,7 +95,7 @@ export default BurgerMenu;
 
 const list = [
   { name: "Home", link: "/" },
-  { name: "News", link: "/news" },
+  { name: "News", link: "/newsandanalyses" },
   { name: "About us", link: "/about" },
   { name: "Education", link: "/education" },
   { name: "Find us", link: "/findus" },

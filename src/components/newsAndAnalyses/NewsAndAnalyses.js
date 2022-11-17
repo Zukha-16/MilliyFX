@@ -1,36 +1,52 @@
-import Container from "../container/Container";
+import { useSelector, useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import { useRef, useState, useEffect } from "react";
-import axios from "axios";
+import { useRef, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import NewsContent from "../newsList/NewsList";
+
+// Styles and components
 import "./NewsAndAnalysis.scss";
-import Comments from "../comments/Comments";
+import Comments from "./comments/Comments";
+import Container from "../container/Container";
+import NewsList from "./newsList/NewsList";
+import { fetchComments } from "../../firebase";
+
+// redux actions
+import {
+  commentsFetching,
+  commentsFetched,
+  commentsFetchingError,
+} from "./newsList/newsSlice";
+import Loader from "../loader/Loader";
 
 const News = () => {
   const [title, setTitle] = useState("News");
-  const [comments, setComments] = useState(null);
+  const [newsName, setNewsName] = useState("");
+  const [newsId, setNewsId] = useState("");
+  const [test, setTest] = useState([]);
   const navigate = useNavigate();
-
-  const getId = async (id) => {
-    await axios.get(`http://localhost:3001/news/${id}`).then((data) => {
-      setComments(data.data);
-    });
-    if (window.innerWidth < 768) {
-      navigate("comments");
-    } else {
-      return;
-    }
-  };
-
+  const dispatch = useDispatch();
   const searchInput = useRef();
+
+  const { news, commentsLoadingStatus } = useSelector((state) => state.news);
+
   const searchHandler = () => {
     console.log(searchInput.current.value);
     searchInput.current.value = "";
   };
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+
+  const getComments = useCallback(
+    (id, name) => {
+      dispatch(commentsFetching());
+      setNewsName(name);
+      setNewsId(id);
+      fetchComments(id)
+        .then((res) => dispatch(commentsFetched(res)))
+        .catch(() => dispatch(commentsFetchingError()));
+    },
+    [news]
+  );
+
+  useEffect(() => {}, []);
 
   return (
     <Container>
@@ -74,17 +90,21 @@ const News = () => {
         {title}
       </h1>
 
-      <div className="relative text-white h-[150vh] mt-5 md:mt-10  flex flex-row gap-4">
+      <div className="relative text-white mt-5 md:mt-10  flex flex-row gap-4">
         <div className="w-full md:w-[65%]">
-          <NewsContent getId={getId} />
+          <NewsList getComments={getComments} />
         </div>
-
+        {test.length > 0 && console.log(test)}
         <div className="md:w-[35%] sticky top-[5.5rem] right-0 h-[80vh] comment_hider">
-          {comments ? <Comments data={comments} /> : null}
+          {commentsLoadingStatus === "loading" ? <Loader /> : null}
+          {commentsLoadingStatus === "error" ? (
+            <p>Something went wrong...</p>
+          ) : null}
+          {commentsLoadingStatus === "idle" && newsId.length > 0 ? (
+            <Comments newsName={newsName} newsId={newsId} />
+          ) : null}
         </div>
       </div>
-
-      <div className="h-screen"></div>
     </Container>
   );
 };
