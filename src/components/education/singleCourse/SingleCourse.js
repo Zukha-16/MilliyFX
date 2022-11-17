@@ -20,6 +20,7 @@ function SingleCourse() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchSingleCourse(id));
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -53,10 +53,10 @@ function Profile() {
     // eslint-disable-next-line
   }, [user]);
 
-  const uploadImageHandler = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-  };
+  // const uploadImageHandler = (e) => {
+  //   e.preventDefault();
+  //   console.log(e.target.value);
+  // };
 
   const inputStyle =
     "w-full rounded-none mb-2 text-lg bg-transparent border-b-2 border-secondary p-1 outline-none focus:border-primaryBlue transition-all duration-300 ease-in-out";

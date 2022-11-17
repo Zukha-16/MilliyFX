@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
 import { useRef, useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 
 // Styles and components
 import "./NewsAndAnalysis.scss";
@@ -22,8 +21,7 @@ const News = () => {
   const [title, setTitle] = useState("News");
   const [newsName, setNewsName] = useState("");
   const [newsId, setNewsId] = useState("");
-  const [test, setTest] = useState([]);
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const searchInput = useRef();
 
@@ -94,7 +92,7 @@ const News = () => {
         <div className="w-full md:w-[65%]">
           <NewsList getComments={getComments} />
         </div>
-        {test.length > 0 && console.log(test)}
+
         <div className="md:w-[35%] sticky top-[5.5rem] right-0 h-[80vh] comment_hider">
           {commentsLoadingStatus === "loading" ? <Loader /> : null}
           {commentsLoadingStatus === "error" ? (

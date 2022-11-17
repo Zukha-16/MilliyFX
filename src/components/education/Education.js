@@ -1,4 +1,4 @@
-import { useNavigate, useNvigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import Container from "../container/Container";
 import basic from "../../assets/basic.jpg";
@@ -16,6 +16,7 @@ function Education() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    // eslint-diasble-next-line
   }, []);
   return (
     <div className="mt-[7rem] lg:mt-[8rem] text-white">
