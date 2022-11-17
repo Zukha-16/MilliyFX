@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { BsSearch } from "react-icons/bs";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useState, useCallback } from "react";
 
 // Styles and components
 import "./NewsAndAnalysis.scss";
@@ -41,10 +41,9 @@ const News = () => {
         .then((res) => dispatch(commentsFetched(res)))
         .catch(() => dispatch(commentsFetchingError()));
     },
+    // eslint-disable-next-line
     [news]
   );
-
-  useEffect(() => {}, []);
 
   return (
     <Container>
