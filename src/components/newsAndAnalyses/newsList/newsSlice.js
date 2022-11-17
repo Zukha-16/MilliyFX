@@ -1,4 +1,4 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   news: [],
@@ -33,7 +33,7 @@ const newsSlice = createSlice({
     commentsFetchingError: (state) => {
       state.commentsLoadingStatus = "error";
     },
-    
+
     commentCreated: (state, action) => {
       state.comments.push(action.payload);
     },
